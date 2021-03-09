@@ -1,11 +1,17 @@
 import PostListItem from '../post-list-item/post-list-item';
 
-const PostList = () => {
+const PostList = ({posts}) => {
+
+    const elements = posts.map((item) => {
+        return (
+            <li key={item.id} className="list-group-item">
+                <PostListItem {...item} />
+            </li>
+        )
+    })
     return (
         <ul className="app-list">
-            <PostListItem label="I want to know English very well"/>
-            <PostListItem label="I want to speak English without mistakes"/>
-            <PostListItem label="I want to know React very well"/>
+            {elements}
         </ul>
     )
 }

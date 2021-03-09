@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import AppHeader from '../app-header/app-header';
 import SearchPanel from '../search-panel/search-panel';
 import PostStatusFilter from '../post-status-filter/post-status-filter';
@@ -9,6 +8,13 @@ import PostAddForm from '../post-add-form/post-add-form';
 import './app.css';
 
 const App = () => {
+
+    const data = [
+        {label: 'I want to know English very well', important: true, id: 'qqq'},
+        {label: 'I want to speak English without mistakes', important: false, id: 'www'},
+        {label: 'I want to know React very well', important: false, id: 'eee'}
+    ]; 
+
     return (
         <div className="app">
             <AppHeader />
@@ -16,7 +22,7 @@ const App = () => {
             <SearchPanel />
             <PostStatusFilter />
             </div>
-            <PostList />
+            <PostList  posts={data}/>
             <PostAddForm />
         </div>
     )

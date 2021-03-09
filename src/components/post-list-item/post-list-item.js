@@ -1,8 +1,14 @@
-const PostListItem = (props) => {
+const PostListItem = ({label, important = false}) => {
+
+    let classNames = 'app-list-item';
+    if(important) {
+        classNames += ' important';
+    }
+
     return (
-        <li className="app-list-item">
+        <div className={classNames}>
             <span className="app-list-item-label">
-                {props.label}
+                {label}
             </span>
             <div>
                 <button 
@@ -17,7 +23,7 @@ const PostListItem = (props) => {
                 </button>
                 <i className="fa fa-heart"></i>
             </div>
-        </li>
+        </div>
     )
 }
 

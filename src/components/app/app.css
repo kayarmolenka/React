@@ -1,3 +1,8 @@
+* {
+  box-sizing: border-box;
+
+}
+
 .app-header {
   align-items:center;
   justify-content: space-between;
@@ -72,6 +77,8 @@
 
   .app-list-item {
     font-size: 1.25rem;
+    padding: 20px;
+    background: white;
   }
   
   .app-list-item button {
@@ -88,9 +95,11 @@
   }
   .app-list-item .btn-star {
       color: #FFD700;
+      background: white;
   }
   .app-list-item .btn-trash {
       color: red;
+      background: white;
   }
   .app-list-item .fa-heart {
       width: 35px;
@@ -137,9 +146,14 @@
   .app {
     margin: 0 auto;
     max-width: 800px;
+    /* background: aliceblue; */
+    height: 100vh;
   }
 
-  
+  #root {
+    background: aliceblue;
+
+  }
   
   .app-header h1 {
     /* width: 150px;
@@ -158,4 +172,5 @@
 .app-list .list-group-item {
   padding: 20px 35px 10px 35px;
   margin-top: 10px;
+  list-style-type: none;
 }
