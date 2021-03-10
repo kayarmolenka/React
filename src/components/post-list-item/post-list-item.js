@@ -1,12 +1,17 @@
-const PostListItem = ({label, important = false}) => {
+import React from "react";
 
-    let classNames = 'app-list-item';
-    if(important) {
-        classNames += ' important';
-    }
+export default class PostListItem extends React.Component {
 
-    return (
-        <div className={classNames}>
+    render() {
+        const {label, important = false} = this.props;
+        let classNames = 'app-list-item';
+        
+        if(important) {
+            classNames += ' important';
+        }
+
+        return (
+            <div className={classNames}>
             <span className="app-list-item-label">
                 {label}
             </span>
@@ -24,7 +29,7 @@ const PostListItem = ({label, important = false}) => {
                 <i className="fa fa-heart"></i>
             </div>
         </div>
-    )
+        )
+    }
 }
 
-export default PostListItem;
