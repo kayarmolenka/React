@@ -24,7 +24,7 @@ export default class PostListItem extends React.Component {
     }
 
     render() {
-        const {label} = this.props;
+        const {label, onDelete} = this.props;
         const {important, like} = this.state;
         let classNames = 'app-list-item';
         
@@ -52,7 +52,8 @@ export default class PostListItem extends React.Component {
                 </button>
                 <button 
                     type="button" 
-                    className="btn-trash">
+                    className="btn-trash"
+                    onClick={onDelete}>
                     <i className="fa fa-trash-o"></i>
                 </button>
                 <i className="fa fa-heart"></i>
