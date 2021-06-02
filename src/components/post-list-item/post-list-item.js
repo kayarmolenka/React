@@ -1,31 +1,9 @@
 import React from "react";
 
 export default class PostListItem extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            important: false,
-            like: false
-        };
-        this.onImportant = this.onImportant.bind(this);
-        this.onLike = this.onLike.bind(this);
-    }
-
-    onImportant() {
-        this.setState(({important}) => ({
-            important: !important
-        }))
-    }
-
-    onLike() {
-        this.setState(({like}) => ({
-            like: !like
-        }))
-    }
 
     render() {
-        const {label, onDelete} = this.props;
-        const {important, like} = this.state;
+        const {label, onDelete, onToggleImportant, onToggleLiked, important, like} = this.props;
         let classNames = 'app-list-item';
         
         if(important) {
@@ -40,14 +18,14 @@ export default class PostListItem extends React.Component {
             <div className={classNames}>
             <span
                 className="app-list-item-label"
-                onClick={this.onLike}>
+                onClick={onToggleLiked}>
                 {label}
             </span>
             <div>
                 <button 
                     type="button"
                     className="btn-star"
-                    onClick={this.onImportant}>
+                    onClick={onToggleImportant}>
                     <i className="fa fa-star"></i>
                 </button>
                 <button 

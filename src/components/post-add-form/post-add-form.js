@@ -1,6 +1,8 @@
-const PostAddForm = () => {
+import React from "react";
+
+const PostAddForm = ({onAdd}) => {
     return (
-        <form className="bottom-panel">
+        <div className="bottom-panel">
             <input
                 type="text"
                 placeholder="О чём вы думаете сейчас?"
@@ -8,9 +10,10 @@ const PostAddForm = () => {
             />
             <button
                 type="submit"
-                className="btn">
+                className="btn"
+                onClick={() => onAdd('Hello')}>
                 Добавить</button>
-        </form>
+        </div>
     )
 }
 

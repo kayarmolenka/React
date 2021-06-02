@@ -12,22 +12,62 @@ export default class App extends Component {
         super(props);
         this.state = {
             data : [
-                {label: 'I want to know English very well', important: true, id: 'qqq'},
-                {label: 'I want to speak English without mistakes', important: false, id: 'www'},
-                {label: 'I want to know React very well', important: false, id: 'eee'}
+                {label: 'I want to know English very well', important: true, like: false, id: 1},
+                {label: 'I want to speak English without mistakes', important: false, like: false, id: 2},
+                {label: 'I want to know React very well', important: false, like: false, id: 3}
             ] 
         };
+
         this.deleteItem = this.deleteItem.bind(this);
+        this.addItem = this.addItem.bind(this);
+        this.onToggleLiked = this.onToggleLiked.bind(this);
+        this.onToggleImportant = this.onToggleImportant.bind(this);
+
+
+        this.maxId = 4;
     }
 
     deleteItem(id) {
         this.setState(({data}) => {
             const index = data.findIndex(elem => elem.id === id);
-            data.splice(index, 1);
+            const newArr = [...data.slice(0, index), ...data.slice(index + 1)];
+
             return {
-                data: data
+                data: newArr
             }
         });
+    }
+
+    addItem(body) {
+        const newItem = {
+            label: body,
+            important: false,
+            id: this.maxId++
+        }
+        this.setState(({data}) => {
+            const newArr = [...data, newItem];
+            return {
+                data: newArr
+            }
+        })
+    }
+
+    onToggleImportant(id){
+        console.log(id)
+    }
+
+    onToggleLiked(id){
+        this.setState(({data}) => {
+            const index = data.findIndex(elem => elem.id === id);
+
+            const old = data[index];
+            const newItem = {...old, like: !old.like};
+            const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
+
+            return {
+                data: newArr
+            }
+        })
     }
 
     render() {
@@ -40,8 +80,11 @@ export default class App extends Component {
                 </div>
                 <PostList  
                     posts={this.state.data}
-                    onDelete={this.deleteItem}/>
-                <PostAddForm />
+                    onDelete={this.deleteItem}
+                    onToggleImportant={this.onToggleImportant}
+                    onToggleLiked={this.onToggleLiked}/>
+                <PostAddForm 
+                    onAdd={this.addItem}/>
             </div>
         )
     }
