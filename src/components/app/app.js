@@ -15,7 +15,8 @@ export default class App extends Component {
                 {label: 'I want to know English very well', important: true, like: false, id: 1},
                 {label: 'I want to speak English without mistakes', important: false, like: false, id: 2},
                 {label: 'I want to know React very well', important: false, like: false, id: 3}
-            ] 
+            ],
+            term: '' 
         };
 
         this.deleteItem = this.deleteItem.bind(this);
@@ -53,7 +54,17 @@ export default class App extends Component {
     }
 
     onToggleImportant(id){
-        console.log(id)
+        this.setState(({data}) => {
+            const index = data.findIndex(elem => elem.id === id);
+
+            const old = data[index];
+            const newItem = {...old, important: !old.important};
+            const newArr = [...data.slice(0, index), newItem, ...data.slice(index + 1)];
+
+            return {
+                data: newArr
+            }
+        })
     }
 
     onToggleLiked(id){
@@ -70,10 +81,25 @@ export default class App extends Component {
         })
     }
 
+    searchPost(items, term) {
+        if(term.length === 0) {
+            return items;
+        }
+
+        items.filter()
+    }
+
     render() {
+        const {data} = this.state;
+
+        const liked = data.filter(item => item.like).length;
+        const allPosts = data.length;
+
         return (
             <div className="app">
-                <AppHeader />
+                <AppHeader 
+                    liked={liked}
+                    allPosts={allPosts}/>
                 <div className="search-panel">
                 <SearchPanel />
                 <PostStatusFilter />
