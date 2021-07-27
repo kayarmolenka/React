@@ -7,7 +7,6 @@ import PostAddForm from '../post-add-form/post-add-form';
 
 import './app.css';
 
-
 export default class App extends Component {
     constructor(props) {
         super(props);
@@ -24,7 +23,6 @@ export default class App extends Component {
         this.addItem = this.addItem.bind(this);
         this.onToggleLiked = this.onToggleLiked.bind(this);
         this.onToggleImportant = this.onToggleImportant.bind(this);
-
 
         this.maxId = 4;
     }
