@@ -23,8 +23,9 @@ export default class App extends Component {
         this.addItem = this.addItem.bind(this);
         this.onToggleLiked = this.onToggleLiked.bind(this);
         this.onToggleImportant = this.onToggleImportant.bind(this);
+        this.onUpdateSearch = this.onUpdateSearch.bind(this);
 
-
+ 
         this.maxId = 4;
     }
 
@@ -86,14 +87,20 @@ export default class App extends Component {
             return items;
         }
 
-        items.filter()
+        return items.filter(item => item.label.indexOf(term) > -1);
+    }
+
+    onUpdateSearch(term) {
+        this.setState({term});
     }
 
     render() {
-        const {data} = this.state;
+        const {data, term} = this.state;
 
         const liked = data.filter(item => item.like).length;
         const allPosts = data.length;
+
+        const visiblePosts = this.searchPost(data, term);
 
         return (
             <div className="app">
@@ -101,11 +108,12 @@ export default class App extends Component {
                     liked={liked}
                     allPosts={allPosts}/>
                 <div className="search-panel">
-                <SearchPanel />
+                <SearchPanel 
+                    onUpdateSearch={this.onUpdateSearch}/>
                 <PostStatusFilter />
                 </div>
                 <PostList  
-                    posts={this.state.data}
+                    posts={visiblePosts}
                     onDelete={this.deleteItem}
                     onToggleImportant={this.onToggleImportant}
                     onToggleLiked={this.onToggleLiked}/>
