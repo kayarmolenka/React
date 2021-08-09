@@ -16,7 +16,8 @@ export default class App extends Component {
                 {label: 'I want to speak English without mistakes', important: false, like: false, id: 2},
                 {label: 'I want to know React very well', important: false, like: false, id: 3}
             ],
-            term: '' 
+            term: '',
+            filter: 'all' 
         };
 
         this.deleteItem = this.deleteItem.bind(this);
